@@ -1,0 +1,17 @@
+# Build artifacts
+Lab/bin/
+Lab/obj/
+*.so
+
+# Output artifacts
+Lab/output/
+*.gif
+*.png
+*.dat
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Checkpoints
+.ipynb_checkpoints/
