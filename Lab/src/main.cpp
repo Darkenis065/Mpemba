@@ -11,7 +11,7 @@ int main() {
 
     try {
         // 1. C++ lee los datos crudos y los limpia en memoria
-        auto datos = leer_datos("datos/datos.dat");
+        auto datos = leer_datos("../resultados_mpemba.dat");
 
         // 2. NUEVO: Exportar los datos limpios y sincronizados para que Python no sufra
         std::ofstream out_raw("output/datos_limpios.csv");

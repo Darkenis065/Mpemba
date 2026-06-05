@@ -22,7 +22,7 @@ DatosExperimento leer_datos(const std::string& ruta_archivo) {
         if (linea.empty()) continue;
 
         // Ignorar la cabecera exacta de tu archivo o cualquier comentario
-        if (primera_linea || linea.find("Tiempo") != std::string::npos || linea[0] == '#') {
+        if (primera_linea || linea.find("Paso") != std::string::npos || linea.find("Tiempo") != std::string::npos || linea[0] == '#') {
             primera_linea = false;
             continue;
         }
@@ -31,10 +31,10 @@ DatosExperimento leer_datos(const std::string& ruta_archivo) {
         std::replace(linea.begin(), linea.end(), ',', '.');
 
         std::stringstream ss(linea);
-        double t, ta, tb;
+        double t, ta, ma, tb, mb;
         
         // Ahora la lectura cientifica leera exactamente 63.380492...
-        if (ss >> t >> ta >> tb) {
+        if (ss >> t >> ta >> ma >> tb >> mb) {
             datos.tiempo.push_back(t);
             datos.tempA.push_back(ta);
             datos.tempB.push_back(tb);

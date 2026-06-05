@@ -36,7 +36,7 @@ ParametrosModelo ModeloMpemba::ajustar_grid_search(const std::vector<double>& te
                     
                     double mse = 0.0;
                     // Submuestreo rápido para el MSE
-                    for (int t_idx = 0; t_idx < num_t; t_idx += 50) { 
+                    for (int t_idx = 0; t_idx < num_t; t_idx += 1) {
                         double t = datos_.tiempo[t_idx];
                         double t_model = Tb + a2 * std::exp(L2 * t);
                         double diff = temp_exp[t_idx] - t_model;
@@ -72,12 +72,12 @@ void ModeloMpemba::ajustar_curvas() {
 bool ModeloMpemba::detectar_cruce(double& t_cruce, double& temp_cruce) {
     if (datos_.tiempo.empty()) return false;
 
-    double t_inicial = datos_.tiempo.back();
+    double t_inicial = 0.0;
     for (double t = t_inicial; t < t_inicial + 50000.0; t += 1.0) {
         double tA = paramA.Tb + paramA.a2 * std::exp(paramA.lambda2 * t);
         double tB = paramB.Tb + paramB.a2 * std::exp(paramB.lambda2 * t);
         
-        if (tA <= tB) {
+        if (tA <= tB && t > 1.0) {
             t_cruce = t;
             temp_cruce = tA;
             return true;
